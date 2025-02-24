@@ -1,13 +1,15 @@
 import React from 'react';
 import Component, { ClassComponent, FunctionalComponent } from './component/Component'
 import './App.css';
+import CurlyBraces from './component/CurlyBraces';
 
 function App() {
   return (
     <div>
-      <ClassComponent />
+      {/* <ClassComponent />
       <FunctionalComponent />
-      <Component />
+      <Component /> */}
+      <CurlyBraces />
     </div>
   );
 }
