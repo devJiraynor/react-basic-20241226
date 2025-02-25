@@ -3,6 +3,8 @@ import Component, { ClassComponent, FunctionalComponent } from './component/Comp
 import './App.css';
 import CurlyBraces from './component/CurlyBraces';
 import Properties from './component-manage/Properties';
+import Gallery from './component-manage/example/Exmaple1';
+import Profile from './component-manage/example/Example2';
 
 function App() {
   return (
@@ -11,7 +13,8 @@ function App() {
       <FunctionalComponent />
       <Component /> */}
       {/* <CurlyBraces /> */}
-      <Properties />
+      {/* <Properties /> */}
+      <Profile />
     </div>
   );
 }
