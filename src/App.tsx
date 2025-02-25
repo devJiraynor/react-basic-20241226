@@ -5,6 +5,7 @@ import CurlyBraces from './component/CurlyBraces';
 import Properties from './component-manage/Properties';
 import Gallery from './component-manage/example/Exmaple1';
 import Profile from './component-manage/example/Example2';
+import ConditionRender from './component-manage/ConditionRender';
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
       <Component /> */}
       {/* <CurlyBraces /> */}
       {/* <Properties /> */}
-      <Profile />
+      {/* <Profile /> */}
+      <ConditionRender />
     </div>
   );
 }
