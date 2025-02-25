@@ -6,6 +6,7 @@ import Properties from './component-manage/Properties';
 import Gallery from './component-manage/example/Exmaple1';
 import Profile from './component-manage/example/Example2';
 import ConditionRender from './component-manage/ConditionRender';
+import ListRender from './component-manage/ListRender';
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
       {/* <CurlyBraces /> */}
       {/* <Properties /> */}
       {/* <Profile /> */}
-      <ConditionRender />
+      {/* <ConditionRender /> */}
+      <ListRender />
     </div>
   );
 }
