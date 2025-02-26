@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { ChangeEvent, KeyboardEvent, useState } from 'react'
 
 // 상태(state) :
 // - 각 컴포넌트가 독립적으로 가지고 있는 데이터 기억 공간
@@ -15,6 +15,8 @@ export default function StateComponent() {
   const [total, setTotal] = useState<number>(0);
 
   const [array, setArray] = useState<number[]>([]);
+
+  const [comment, setComment] = useState<string>('');
 
   const onClickHandler = () => {
     letCount++;
@@ -71,6 +73,21 @@ export default function StateComponent() {
     setArray(newArray);
   };
 
+  const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    setComment(value);
+  };
+
+  const onKeyDownHandler = (event: KeyboardEvent<HTMLInputElement>) => {
+    const { key } = event;
+    if (key !== 'Enter') return;
+    onSubmitHandler();
+  };
+
+  const onSubmitHandler = () => {
+    alert('전송!');
+  };
+
   return (
     <div>
       <h2>일반변수 : {letCount}</h2>
@@ -83,6 +100,13 @@ export default function StateComponent() {
       <div>
         {array.join(', ')} / 길이: {array.length}
         <button onClick={onArrayAddHandler}>추가</button>
+      </div>
+      <p>{comment}</p>
+      <input value={comment} onChange={onChangeHandler} />
+
+      <div style={{ margin: '40px', padding: '40px', border: '1px solid gray' }}>
+        <input value={comment} onChange={onChangeHandler} onKeyDown={onKeyDownHandler} />
+        <button onClick={onSubmitHandler}>전송</button>
       </div>
     </div>
   )
