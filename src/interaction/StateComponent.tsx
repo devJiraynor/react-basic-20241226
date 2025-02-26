@@ -12,6 +12,9 @@ export default function StateComponent() {
   // const [상태변수, 상태변경함수] = useState<상태변수타입>(초기값);
   const [count, setCount] = useState<number>(0);
   let [num, setNumber] = useState<number>(0);
+  const [total, setTotal] = useState<number>(0);
+
+  const [array, setArray] = useState<number[]>([]);
 
   const onClickHandler = () => {
     letCount++;
@@ -24,14 +27,63 @@ export default function StateComponent() {
     num++;
     console.log(num);
     console.log('----------');
-  }
+  };
+
+  const onStateClickHandler = () => {
+    // 상태변경함수를 사용하여 상태를 변경하더라도 바로 변경되지 않음
+    // 함수가 끝나고 렌더링되는 시점에 적용됨
+    // console.log(count);
+    // setCount(count + 1);
+    // console.log(count);
+    // setCount(count + 1);
+    // console.log(count);
+    // setCount(count + 1);
+    // console.log(count);
+    // console.log('----------');
+
+    // let nextCount = count + 1;
+    // setCount(nextCount);
+    // nextCount += 1;
+    // setCount(nextCount);
+    // nextCount += 1;
+    // setCount(nextCount);
+
+    // 상태변경함수에 콜백함수를 전달하면 해당 콜백 함수를 누적시켜서 실행
+    setCount((prevCount) => prevCount + 1);
+    setCount((prevCount) => prevCount + 1);
+    setCount((prevCount) => prevCount + 1);
+  };
+
+  const onSumHandler= () => {
+    // setCount(count + 1);
+    // setTotal(total + count);
+
+    const nextCount = count + 1;
+    setCount(nextCount);
+    const nextTotal = total + nextCount;
+    setTotal(nextTotal);
+  };
+
+  const onArrayAddHandler = () => {
+    // const nextCount = count + 1;
+    // setCount(nextCount);
+    const newArray = [...array, 1];
+    setArray(newArray);
+  };
 
   return (
     <div>
       <h2>일반변수 : {letCount}</h2>
       <h2>상태변수 : {count}</h2>
       <h2>let 상태변수 : {num}</h2>
+      <h2>total : {total}</h2>
       <button onClick={onClickHandler}>증가</button>
+      <button onClick={onStateClickHandler}>버튼</button>
+      <button onClick={onSumHandler}>더하기</button>
+      <div>
+        {array.join(', ')} / 길이: {array.length}
+        <button onClick={onArrayAddHandler}>추가</button>
+      </div>
     </div>
   )
 }
