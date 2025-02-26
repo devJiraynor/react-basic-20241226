@@ -8,6 +8,7 @@ import Profile from './component-manage/example/Example2';
 import ConditionRender from './component-manage/ConditionRender';
 import ListRender from './component-manage/ListRender';
 import EventComponent from './interaction/EventComponent';
+import StateComponent from './interaction/StateComponent';
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
       {/* <Profile /> */}
       {/* <ConditionRender /> */}
       {/* <ListRender /> */}
-      <EventComponent />
+      {/* <EventComponent /> */}
+      <StateComponent />
     </div>
   );
 }
