@@ -12,6 +12,7 @@ import StateComponent from './interaction/StateComponent';
 import ForwardingComponent from './interaction/ForwardingComponent';
 import HookComponent1 from './hook/HookComponent1';
 import HookComponent2 from './hook/HookComponent2';
+import CustomHookComponent from './hook/CustomHookComponent';
 
 function App() {
   return (
@@ -27,7 +28,8 @@ function App() {
       {/* <EventComponent /> */}
       {/* <StateComponent /> */}
       {/* <ForwardingComponent /> */}
-      <HookComponent2 />
+      {/* <HookComponent2 /> */}
+      <CustomHookComponent />
     </div>
   );
 }
