@@ -15,6 +15,8 @@ import HookComponent2 from './hook/HookComponent2';
 import CustomHookComponent from './hook/CustomHookComponent';
 import { Outlet, Route, Routes, useLocation } from 'react-router';
 import PathMove from './router/PathMove';
+import QueryString from './router/QueryString';
+import PathVariable from './router/PathVariable';
 
 // react-router 패키지:
 // - React의 SPA(Single Page Application)에서 라우팅을 구현하기 위한 라이브러리
@@ -65,6 +67,8 @@ function App() {
 
       <Route path={'/router'}>
         <Route path={'path-move'} element={<PathMove />} />
+        <Route path={'query-string'} element={<QueryString />} />
+        <Route path={'path-variable/:name'} element={<PathVariable />} />
       </Route>
 
       <Route path={'*'} element={<h1>404!</h1>} />
