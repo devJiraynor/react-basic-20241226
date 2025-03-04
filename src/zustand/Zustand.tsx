@@ -14,30 +14,46 @@ import { create } from 'zustand';
 // - zustand 패키지 내부의 create 함수로 store를 생성할 수 있음
 // - store: 관리할 상태들과 각 상태의 변경 함수들의 집합
 // - create 함수를 호출하면 store를 반환하는 훅 함수를 반환
+// - Typescript의 경우 create 함수에 store의 구조를 제너릭으로 전달해야함
 
-const useStore = create();
+interface Store {
+  state1: number;
+  setState1: (state1: number) => void;
+  increaseState1: () => void;
+}
+
+// - create 함수의 매개변수로 set 함수 매개변수를 받는 콜백함수를 전달해야함
+// - set 함수: 상태(store)를 변경하기 위한 함수
+// - create 함수로 전달한 콜백 함수는 store 객체를 반환  
+
+const useStore = create<Store>((set) => ({
+  state1: 0,
+  // create 함수의 매개변수로 전달된 콜백 함수의 set 함수를 통해서 상태를 변경해야함
+  // set 함수의 매개변수로는 현재 상태(store)를 받는 콜백 함수를 전달 
+  // set 함수의 매개변수로 전달한 콜백 함수는 변경된 상태 객체(store)를 반환()
+  setState1: (state1: number) => set((state) => ({...state, state1})),
+  increaseState1: () => 
+    set((state) => ({ ...state, state1: state.state1 + 1 }))
+}));
 
 export default function Zustand() {
-  const [state1, setState1] = useState<number>(0);
+  // const [state1, setState1] = useState<number>(0);
   
-  const onChangeHandler = () => {
-    setState1(state1 + 1);
-  };
+  // const onChangeHandler = () => {
+  //   setState1(state1 + 1);
+  // };
 
   return (
     <div style={{ margin: '40px', padding: '40px', border: '1px solid gray' }}>
-      <B state1={state1} />
-      <C state1={state1} onChange={onChangeHandler} />
+      <B />
+      <C />
     </div>
   )
 }
 
+function B() {
 
-interface BProp {
-  state1: number;
-}
-
-function B({ state1 }: BProp) {
+  const { state1 } = useStore();
 
   return (
     <div style={{ margin: '40px', padding: '40px', border: '1px solid gray' }}>
@@ -47,30 +63,25 @@ function B({ state1 }: BProp) {
 
 }
 
-interface CProp {
-  state1: number;
-  onChange: () => void;
-}
-
-function C(prop: CProp) {
+function C() {
   return (
     <div style={{ margin: '40px', padding: '40px', border: '1px solid gray' }}>
-      <D {...prop} />
+      <D />
       <E />
     </div>
   )
 }
 
-interface DProp {
-  state1: number;
-  onChange: () => void;
-}
+function D() {
 
-function D({ state1, onChange }: DProp) {
+  const { increaseState1 } = useStore();
+
+  const onChange = () => {
+    increaseState1();
+  };
 
   return (
     <div style={{ margin: '40px', padding: '40px', border: '1px solid gray' }}>
-      <h1>{state1}</h1>
       <button onClick={onChange}>증가</button>
     </div>
   )
